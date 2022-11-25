@@ -70,6 +70,9 @@ public class SampleWorkflowImpl implements SampleWorkflow {
         this.gSheetsActivities = Workflow.newActivityStub(GSheetsActivities.class, defaultActivityOptions);
     }
 
+    /**Pregunta a JORGE/ZEBEN
+     * esto conviene dejarlo aqui o deberiamos ponerlo en otro lado?
+     */
     private List<String> writeSheet(TaskResource task){
         String firstName = task.getElementValues().get("firstName").getValueAsString();
         String lastName = task.getElementValues().get("lastName").getValueAsString();       
@@ -84,6 +87,12 @@ public class SampleWorkflowImpl implements SampleWorkflow {
 
         this.kuFlowGenerator = new KuFlowGenerator(request.getProcessId());
 
+        /**BUSINESS LOGIC
+         * Get seats available and if there's room show the form to be completed. 
+         * If not, the "no seats available notification" will be shown.
+         * Once the form was completed, the user's information will be written in the 
+         * spreadsheet and inform the seat number through the "Reservation completed notification"
+         */
         String seatsAvailable = this.gSheetsActivities.getCellValue();
         
         if ((seatsAvailable).equalsIgnoreCase("0")){
@@ -91,9 +100,11 @@ public class SampleWorkflowImpl implements SampleWorkflow {
             this.createTaskNotificationNoSeatsAvailable(request);
 
         } else{
+
             TaskResource taskReservationApplication = this.createTaskReservationForm(request);
             this.writeSheet(taskReservationApplication);
             this.createTaskNotificationReservationComplete(request);
+
         }
         
         CompleteProcessResponseResource completeProcess = this.completeProcess(request.getProcessId());
@@ -123,7 +134,6 @@ public class SampleWorkflowImpl implements SampleWorkflow {
      * @param workflowRequest workflow request
      * @return task created
      */
-    //private TaskResource createTaskReservationForm(WorkflowRequestResource workflowRequest, TaskResource task) {
     private TaskResource createTaskReservationForm(WorkflowRequestResource workflowRequest) {
         UUID taskId = this.kuFlowGenerator.randomUUID();
 
@@ -136,11 +146,6 @@ public class SampleWorkflowImpl implements SampleWorkflow {
         List <String> result = this.gSheetsActivities.readSheet();
         createTaskRequest.putElementValuesItem("seats", TaskElementValueWrapperResource.of(result.get(0)));
         
-        /**if (task != null){
-            //Copio los datos ingresados en la primera ronda del formulario
-            createTaskRequest.setElementValues(task.getElementValues());
-        }**/
-
         // Create and retrieve Task in KuFlow
         this.kuflowActivities.createTaskAndWaitFinished(createTaskRequest);
 
@@ -189,7 +194,7 @@ public class SampleWorkflowImpl implements SampleWorkflow {
         createTaskRequest.setTaskDefinitionCode(TASK_CODE_NOTIFICATION_RESERVATION_COMPLETE);
         createTaskRequest.setProcessId(workflowRequest.getProcessId());
         
-        //Get the row count to know the seat number
+        //Get the row count to know the seat number and inform user
         String seatNo = this.gSheetsActivities.getSeatNo();
         createTaskRequest.putElementValuesItem("seatNo", TaskElementValueWrapperResource.of(seatNo));
         

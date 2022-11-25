@@ -11,13 +11,10 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
-import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
@@ -92,7 +89,8 @@ public class GSheetsActivitiesImp implements GSheetsActivities {
 
   @Override
   public List<String> readSheet() {
-    String aCol = "";
+    String tableData = "";
+    String textFormat = "|%-15s";
     NetHttpTransport HTTP_TRANSPORT;
     try {
       HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -117,8 +115,8 @@ public class GSheetsActivitiesImp implements GSheetsActivities {
       } else {
         for (List row : values) {
           // Assign data from columns A to D, which correspond to the bus/schedule/Seat table.
-          aCol += String.format("|%-15s", (String) row.get(0)) + String.format("|%-15s", (String) row.get(1)) +
-            String.format("|%-15s", (String) row.get(2)) + String.format("|%-15s", (String) row.get(3)) + " | \r\n";
+          tableData += String.format(textFormat, (String) row.get(0)) + String.format(textFormat, (String) row.get(1)) +
+            String.format(textFormat, (String) row.get(2)) + String.format(textFormat, (String) row.get(3)) + " | \r\n";
             //Print for console feedback
             System.out.printf("|%1$-12s|%2$-10s|%3$-20s|%4$-20s\n",row.get(0),row.get(1),row.get(2),row.get(3));
         }
@@ -129,8 +127,8 @@ public class GSheetsActivitiesImp implements GSheetsActivities {
       e.printStackTrace();
     }
     //Add html tags for KuFlow UI Showing
-    aCol = "<pre>" + aCol + "</pre>";
-    return List.of(aCol);
+    tableData = "<pre>" + tableData + "</pre>";
+    return List.of(tableData);
   }
 
   @Override
@@ -162,12 +160,14 @@ public class GSheetsActivitiesImp implements GSheetsActivities {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    //Print for console feedback
+    System.out.printf("Data written in spreadsheet: %1$-20s|%2$-20s|%3$-20s|\n",firstName, lastName, email);
     return List.of(firstName, lastName, email);
   }
 
   @Override
   public String getCellValue() {
-    String cell = "";
+    String cellValue = "";
     try {
       final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
       final String range = "BUS!D2";
@@ -181,7 +181,7 @@ public class GSheetsActivitiesImp implements GSheetsActivities {
         System.out.println("No data found.");
       } else {
         for (List row : values) {
-          cell = (String) row.get(0);
+          cellValue = (String) row.get(0);
         }
       }
     } catch (GeneralSecurityException e) {
@@ -190,7 +190,7 @@ public class GSheetsActivitiesImp implements GSheetsActivities {
       e.printStackTrace();
     }
 
-    return cell;
+    return cellValue;
   }
 
   @Override
