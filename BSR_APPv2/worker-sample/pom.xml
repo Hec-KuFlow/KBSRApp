@@ -53,4 +53,25 @@
       <version>v4-rev20210629-1.32.1</version>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.hubspot.maven.plugins</groupId>
+        <artifactId>prettier-maven-plugin</artifactId>
+        <version>0.18</version>
+        <configuration>
+          <prettierJavaVersion>1.6.2</prettierJavaVersion>
+          <ignoreEditorConfig>false</ignoreEditorConfig>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

@@ -16,7 +16,7 @@ import com.kuflow.engine.client.common.KuFlowGenerator;
 import com.kuflow.engine.client.common.resource.WorkflowRequestResource;
 import com.kuflow.engine.client.common.resource.WorkflowResponseResource;
 import com.kuflow.engine.client.common.util.TemporalUtils;
-import com.kuflow.engine.samples.worker.Activity.GSheetsActivities;
+import com.kuflow.engine.samples.worker.activity.GSheetsActivities;
 import com.kuflow.rest.client.resource.TaskElementValueWrapperResource;
 import com.kuflow.rest.client.resource.TaskResource;
 import io.temporal.activity.ActivityOptions;
@@ -37,7 +37,6 @@ public class SampleWorkflowImpl implements SampleWorkflow {
     private static final String TASK_CODE_NOTIFICATION_RESERVATION_COMPLETE = "NOTIF_RSVCP";
 
     private final KuFlowActivities kuflowActivities;
-    //Declaring the instance of the activity
     private final GSheetsActivities gSheetsActivities;
 
     private KuFlowGenerator kuFlowGenerator;
@@ -63,21 +62,13 @@ public class SampleWorkflowImpl implements SampleWorkflow {
             Workflow.newActivityStub(
                 KuFlowActivities.class,
                 defaultActivityOptions,
-                Map.of(TemporalUtils.getActivityType(KuFlowActivities.class, "createTaskAndWaitFinished"), asyncActivityOptions)
+                Map.of(
+                    TemporalUtils.getActivityType(KuFlowActivities.class, "createTaskAndWaitFinished"),
+                    asyncActivityOptions
+                )
             );
-        //Add here this line
+
         this.gSheetsActivities = Workflow.newActivityStub(GSheetsActivities.class, defaultActivityOptions);
-    }
-
-    /**Pregunta a JORGE/ZEBEN
-     * esto conviene dejarlo aqui o deberiamos ponerlo en otro lado?
-     */
-    private List<String> writeSheet(TaskResource task){
-        String firstName = task.getElementValues().get("firstName").getValueAsString();
-        String lastName = task.getElementValues().get("lastName").getValueAsString();       
-        String email = task.getElementValues().get("email").getValueAsString();
-
-        return this.gSheetsActivities.writeSheet(firstName, lastName, email);
     }
 
     @Override
@@ -86,26 +77,23 @@ public class SampleWorkflowImpl implements SampleWorkflow {
 
         this.kuFlowGenerator = new KuFlowGenerator(request.getProcessId());
 
-        /**BUSINESS LOGIC
-         * Get seats available and if there's room show the form to be completed. 
-         * If not, the "no seats available notification" will be shown.
-         * Once the form was completed, the user's information will be written in the 
-         * spreadsheet and inform the seat number through the "Reservation completed notification"
-         */
+        //
+        // BUSINESS LOGIC
+        // Get seats available and if there's room show the form to be completed.
+        // If not, the "no seats available notification" will be shown.
+        // Once the form was completed, the user's information will be written in the
+        // spreadsheet and inform the seat number through the "Reservation completed notification"
+        //
         String seatsAvailable = this.gSheetsActivities.getCellValue();
-        
-        if ((seatsAvailable).equalsIgnoreCase("0")){
-            
+
+        if ((seatsAvailable).equalsIgnoreCase("0")) {
             this.createTaskNotificationNoSeatsAvailable(request);
-
-        } else{
-
+        } else {
             TaskResource taskReservationApplication = this.createTaskReservationForm(request);
             this.writeSheet(taskReservationApplication);
             this.createTaskNotificationReservationComplete(request);
-
         }
-        
+
         CompleteProcessResponseResource completeProcess = this.completeProcess(request.getProcessId());
 
         LOGGER.info("Process {} finished", request.getProcessId());
@@ -141,10 +129,10 @@ public class SampleWorkflowImpl implements SampleWorkflow {
         createTaskRequest.setTaskDefinitionCode(TASK_CODE_RESERVATION_FORM);
         createTaskRequest.setProcessId(workflowRequest.getProcessId());
 
-        //Adding the reading of the sheet and passing it to the text element
-        List <String> result = this.gSheetsActivities.readSheet();
+        // Adding the reading of the sheet and passing it to the text element
+        List<String> result = this.gSheetsActivities.readSheet();
         createTaskRequest.putElementValuesItem("seats", TaskElementValueWrapperResource.of(result.get(0)));
-        
+
         // Create and retrieve Task in KuFlow
         this.kuflowActivities.createTaskAndWaitFinished(createTaskRequest);
 
@@ -192,11 +180,11 @@ public class SampleWorkflowImpl implements SampleWorkflow {
         createTaskRequest.setTaskId(taskId);
         createTaskRequest.setTaskDefinitionCode(TASK_CODE_NOTIFICATION_RESERVATION_COMPLETE);
         createTaskRequest.setProcessId(workflowRequest.getProcessId());
-        
-        //Get the row count to know the seat number and inform user
+
+        // Get the row count to know the seat number and inform user
         String seatNo = this.gSheetsActivities.getSeatNo();
         createTaskRequest.putElementValuesItem("seatNo", TaskElementValueWrapperResource.of(seatNo));
-        
+
         // Create and retrieve Task in KuFlow
         this.kuflowActivities.createTaskAndWaitFinished(createTaskRequest);
 
@@ -206,5 +194,12 @@ public class SampleWorkflowImpl implements SampleWorkflow {
 
         return retrieveTaskResponse.getTask();
     }
-   
+
+    private List<String> writeSheet(TaskResource task) {
+        String firstName = task.getElementValues().get("firstName").getValueAsString();
+        String lastName = task.getElementValues().get("lastName").getValueAsString();
+        String email = task.getElementValues().get("email").getValueAsString();
+
+        return this.gSheetsActivities.writeSheet(firstName, lastName, email);
+    }
 }

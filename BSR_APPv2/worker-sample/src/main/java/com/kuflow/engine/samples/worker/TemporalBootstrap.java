@@ -7,8 +7,7 @@
 package com.kuflow.engine.samples.worker;
 
 import com.kuflow.engine.client.activity.kuflow.KuFlowActivities;
-import com.kuflow.engine.samples.worker.Activity.GSheetsActivities;
-
+import com.kuflow.engine.samples.worker.activity.GSheetsActivities;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 import java.util.concurrent.TimeUnit;
@@ -31,8 +30,12 @@ public class TemporalBootstrap implements InitializingBean, DisposableBean {
 
     private final ApplicationProperties applicationProperties;
 
-    public TemporalBootstrap(ApplicationProperties applicationProperties, WorkerFactory factory, 
-                                KuFlowActivities kuflowActivities, GSheetsActivities gSheetsActivities) {
+    public TemporalBootstrap(
+        ApplicationProperties applicationProperties,
+        WorkerFactory factory,
+        KuFlowActivities kuflowActivities,
+        GSheetsActivities gSheetsActivities
+    ) {
         this.applicationProperties = applicationProperties;
         this.factory = factory;
         this.kuflowActivities = kuflowActivities;

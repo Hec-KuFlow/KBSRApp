@@ -40,7 +40,10 @@ public class SampleEngineWorkerApp implements CommandLineRunner {
     }
 
     private static void logApplicationStartup(Environment env) {
-        String protocol = Optional.ofNullable(env.getProperty("server.ssl.key-store")).map(key -> "https").orElse("http");
+        String protocol = Optional
+            .ofNullable(env.getProperty("server.ssl.key-store"))
+            .map(key -> "https")
+            .orElse("http");
         String serverPort = env.getProperty("server.port");
         String contextPath = Optional
             .ofNullable(env.getProperty("server.servlet.context-path"))
@@ -54,7 +57,9 @@ public class SampleEngineWorkerApp implements CommandLineRunner {
             LOGGER.warn("The host name could not be determined, using `localhost` as fallback");
         }
 
-        String[] profiles = ArrayUtils.isNotEmpty(env.getActiveProfiles()) ? env.getActiveProfiles() : env.getDefaultProfiles();
+        String[] profiles = ArrayUtils.isNotEmpty(env.getActiveProfiles())
+            ? env.getActiveProfiles()
+            : env.getDefaultProfiles();
 
         LOGGER.info(
             """
