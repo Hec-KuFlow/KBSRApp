@@ -114,14 +114,21 @@ public class TemporalConfiguration {
         ) {
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
             trustStore.load(null, null);
-            X509Certificate certificate = (X509Certificate) CertificateFactory.getInstance("X509").generateCertificate(caInputStream);
+            X509Certificate certificate = (X509Certificate) CertificateFactory
+                .getInstance("X509")
+                .generateCertificate(caInputStream);
             trustStore.setCertificateEntry("temporal-ca", certificate);
 
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                TrustManagerFactory.getDefaultAlgorithm()
+            );
             trustManagerFactory.init(trustStore);
             TrustManager trustManager = trustManagerFactory.getTrustManagers()[0];
 
-            return SimpleSslContextBuilder.forPKCS8(certInputStream, keyInputStream).setTrustManager(trustManager).build();
+            return SimpleSslContextBuilder
+                .forPKCS8(certInputStream, keyInputStream)
+                .setTrustManager(trustManager)
+                .build();
         } catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException e) {
             throw new KuFlowEngineClientException("Unable to configure mTLS", e);
         }
