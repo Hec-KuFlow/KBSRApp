@@ -67,7 +67,6 @@ public class SampleWorkflowImpl implements SampleWorkflow {
                     asyncActivityOptions
                 )
             );
-
         this.gSheetsActivities = Workflow.newActivityStub(GSheetsActivities.class, defaultActivityOptions);
     }
 
@@ -77,13 +76,6 @@ public class SampleWorkflowImpl implements SampleWorkflow {
 
         this.kuFlowGenerator = new KuFlowGenerator(request.getProcessId());
 
-        //
-        // BUSINESS LOGIC
-        // Get seats available and if there's room show the form to be completed.
-        // If not, the "no seats available notification" will be shown.
-        // Once the form was completed, the user's information will be written in the
-        // spreadsheet and inform the seat number through the "Reservation completed notification"
-        //
         String seatsAvailable = this.gSheetsActivities.getCellValue();
 
         if ((seatsAvailable).equalsIgnoreCase("0")) {

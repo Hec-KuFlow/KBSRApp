@@ -131,7 +131,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
     public List<String> writeSheet(String firstName, String lastName, String email) {
         try {
             final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-            String range = "BUS!A7:C7";
+            String range = "BUS!A5:C5";
             Sheets service = new Sheets.Builder(httpTransport, JSON_FACTORY, getCredentials(httpTransport))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -195,7 +195,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
 
     @Override
     public String getSeatNo() {
-        String range = "BUS!B7:B18";
+        String range = "BUS!B5:B116";
 
         // Declare a variable for the seat number
         String seatNo = "";
@@ -208,7 +208,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
 
             ValueRange response = service.spreadsheets().values().get(SPREAD_SHEET_ID, range).execute();
 
-            //Count the amount of rows ocuppied
+            //Count the amount of rows occupied
             seatNo = String.valueOf(response.getValues().size());
         } catch (GeneralSecurityException | IOException e) {
             LOGGER.error("Error getting seat number", e);
