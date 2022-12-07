@@ -82,7 +82,7 @@ public class SampleWorkflowImpl implements SampleWorkflow {
             this.createTaskNotificationNoSeatsAvailable(request);
         } else {
             TaskResource taskReservationApplication = this.createTaskReservationForm(request);
-            this.writeSheet(taskReservationApplication);
+            this.getFormInfoToWrite(taskReservationApplication);
             this.createTaskNotificationReservationComplete(request);
         }
 
@@ -187,7 +187,7 @@ public class SampleWorkflowImpl implements SampleWorkflow {
         return retrieveTaskResponse.getTask();
     }
 
-    private List<String> writeSheet(TaskResource task) {
+    private List<String> getFormInfoToWrite(TaskResource task) {
         String firstName = task.getElementValues().get("firstName").getValueAsString();
         String lastName = task.getElementValues().get("lastName").getValueAsString();
         String email = task.getElementValues().get("email").getValueAsString();
