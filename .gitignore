@@ -18,17 +18,17 @@ target/
 # Tokens
 ######################
 tokens/
+resources/
 
 ######################
 # Google Credentials
 ######################
 credentials.json
-.worker-sample\src\main\resources
 
 ######################
 # Project Keep
 ######################
 !pom.xml
-!src\main\java\com\kuflow\engine\samples\worker
+!src\main\java\com\kuflow\engine\samples\worker\
 !README.md
 !TUTORIAL.md
