@@ -21,11 +21,6 @@ tokens/
 resources/
 
 ######################
-# Google Credentials
-######################
-credentials.json
-
-######################
 # Project Keep
 ######################
 !pom.xml
