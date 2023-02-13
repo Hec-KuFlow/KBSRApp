@@ -18,3 +18,8 @@ target/
 # Tokens
 ######################
 tokens/
+
+######################
+# Google Credentials
+######################
+resources/credentials.json
