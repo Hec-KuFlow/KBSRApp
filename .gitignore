@@ -22,4 +22,4 @@ tokens/
 ######################
 # Google Credentials
 ######################
-resources/credentials.json
+credentials.json
