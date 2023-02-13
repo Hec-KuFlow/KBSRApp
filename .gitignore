@@ -23,3 +23,11 @@ tokens/
 # Google Credentials
 ######################
 credentials.json
+
+######################
+# Project Keep
+######################
+!pom.xml
+!src\main\java\com\kuflow\engine\samples\worker
+!README.md
+!TUTORIAL.md
