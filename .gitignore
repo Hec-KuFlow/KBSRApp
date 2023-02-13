@@ -24,6 +24,6 @@ resources/
 # Project Keep
 ######################
 !pom.xml
-!src\main\java\com\kuflow\engine\samples\worker\
+!worker/
 !README.md
 !TUTORIAL.md
