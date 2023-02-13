@@ -23,7 +23,7 @@ tokens/
 # Google Credentials
 ######################
 credentials.json
-worker-sample\src\main\resources
+.worker-sample\src\main\resources
 
 ######################
 # Project Keep
