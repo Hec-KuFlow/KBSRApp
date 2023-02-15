@@ -173,9 +173,9 @@ Now, you can download a sample Workflow Implementation from the Process Definiti
 
 <div class="center">
 
-![](/img/TUT03-07-Template_1)
+![](/img/TUT03-07-Template_1.png)
 
-![](/img/TUT03-07-Template_2)
+![](/img/TUT03-07-Template_2.png)
 
 </div>
 
@@ -297,7 +297,7 @@ Please note that this is a YAML, respect the indentation.
 
 <div class="text--center">
 
-![](/img/TUT03-07-Template_3)
+![](/img/TUT03-07-Template_3.png)
 
 </div>
 
@@ -307,7 +307,7 @@ We create a new file called **credentials.json** inside a subfolder **/resources
 
 <div class="text--center">
 
-![](/img/TUT03-07-Template_4)
+![](/img/TUT03-07-Template_4.png)
 
 </div>
 
@@ -754,7 +754,11 @@ If there are seats available, the UI will show the Bus Billboard and the form to
 <div class="text--center">
 
 ![](/img/TUT03-08-Test_4.png)
+
 ![](/img/TUT03-08-Test_5.png)
+![](/img/TUT03-08-Test_6.png)
+![](/img/TUT03-08-Test_7.png)
+![](/img/TUT03-08-Test_8.png)
 
 </div>
 
@@ -762,7 +766,7 @@ If not, will show the “No Seats Available” notification:
 
 <div class="text--center">
 
-![](/img/TUT03-08-Test_3.png)
+![](/img/TUT03-08-Test_9.png)
 
 </div>
 
@@ -770,7 +774,7 @@ You get something like this:
 
 <div class="text--center">
 
-![](/img/TUT03-08-Test_3.png)
+![](/img/TUT03-08-Test_10.png)
 
 </div>
 
@@ -789,7 +793,16 @@ Here you can watch all steps:
 
 <div class="text--center">
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/tKjPTAZHVzk/0.jpg)](https://youtu.be/tKjPTAZHVzk)
+  <iframe
+    width='80%'
+    height='400'
+    src='https://www.youtube.com/embed/nTLGa2zheF0'
+    title='YouTube video player'
+    frameborder='0'
+    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+    allowfullscreen
+    allowFullScreen="allowFullScreen"
+  ></iframe>
 
 </div>
 
