@@ -801,23 +801,12 @@ In this tutorial, we have covered the basics of creating a Temporal.io based wor
 
 We have created a special video with the entire process:
 
-Here you can watch all steps:
+Here you can watch all steps in the following video:
 
-<div class="text--center">
-
-  <iframe
-    width='80%'
-    height='400'
-    src='https://www.youtube.com/embed/nTLGa2zheF0'
-    title='YouTube video player'
-    frameborder='0'
-    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-    allowfullscreen
-    allowFullScreen="allowFullScreen"
-  ></iframe>
-
-</div>
-
-https://youtu.be/nTLGa2zheF0
+<a href="https://youtu.be/nTLGa2zheF0" target="_blank" title="Play me!">
+  <p align="center">
+    <img width="75%" src="https://img.youtube.com/vi/nTLGa2zheF0/maxresdefault.jpg" alt="Play me!"/>
+  </p>
+</a>
 
 We sincerely hope that this step-by-step guide will help you to understand better how KuFlow can help your business to have better and more solid business processes.
