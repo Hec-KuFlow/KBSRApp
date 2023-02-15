@@ -62,7 +62,7 @@ Getting something like this:
 
 <div class="center">
 
-![](/img/tutorial/TUT03-02-GSpreadsheet.png)
+![](/img/TUT03-02-GSpreadsheet.png)
 
 </div>
 
@@ -71,6 +71,7 @@ Getting something like this:
 We need to create the definition of the process that will execute our Workflow. In this section, we will configure the KuFlow tasks of which it is made up as well as the information necessary to complete said tasks, the process access rules (i.e. *RBAC*), as well as another series of information. To do this we go to the `Setting > Processes` menu and create a new process.
 
 Complete *Process Definition* with the following data:
+
 - Process name
 	- Bus Seat Reservation
 - Description
@@ -91,7 +92,7 @@ Finally, you get something like:
 
 <div class="center">
 
-![](/img/tutorial/serverless/TUT03-03-Process.png)
+![](/img/TUT03-03-Process.png)
 
 </div>
 
@@ -152,7 +153,7 @@ You'll get something like:
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-04-Process.png)
+![](/img/TUT03-04-Process.png)
 
 </div>
 
@@ -162,9 +163,9 @@ By clicking on the “Publish” button you’ll receive a confirmation request 
 
 <div class="center">
 
-![](/img/tutorial/serverless/TUT03-05-publish.png)
+![](/img/TUT03-05-publish.png)
 
-![](/img/tutorial/serverless/TUT03-06-publish.png)
+![](/img/TUT03-06-publish.png)
 
 </div>
 
@@ -172,9 +173,9 @@ Now, you can download a sample Workflow Implementation from the Process Definiti
 
 <div class="center">
 
-![](/img/tutorial/serverless/TUT03-07-Template_1)
+![](/img/TUT03-07-Template_1)
 
-![](/img/tutorial/serverless/TUT03-07-Template_2)
+![](/img/TUT03-07-Template_2)
 
 </div>
 
@@ -205,6 +206,7 @@ To make things simpler, the following technologies have been mainly used in our 
 ### Resolve dependencies​
 
 We need to modify pom.xml, to include new dependencies:
+
 ```xml
    <dependency>
       <groupId>com.google.api-client</groupId>
@@ -290,27 +292,30 @@ application:
 	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
 	       -----END CERTIFICATE-----
 ```
+
 Please note that this is a YAML, respect the indentation.
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-07-Template_3)
+![](/img/TUT03-07-Template_3)
 
 </div>
 
 #### 3rd Party (Google) Credentials
+
 We create a new file called **credentials.json** inside a subfolder **/resources**, with the content generated from the Google Prerequisites​ section on this tutorial.
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-07-Template_4)
+![](/img/TUT03-07-Template_4)
 
 </div>
 
 ### Define new Activities ​
 
 We create a new subfolder called **activity** and inside a file called **GSheetsActivities.java** with the following content:
-```java 
+
+```java
 **/*
  * Copyright (c) 2022-present KuFlow S.L.
  *
@@ -378,8 +383,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GSheetsActivitiesImpl.class);
 
-    private static final String APPLICATION_NAME = 
-	"Google Sheets API Java Quickstart";
+    private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
@@ -611,7 +615,7 @@ In this section, we will make the fundamental steps to creating the most basic w
 
 Open the **SampleWorkflowImpl.java** file and modify it as follows. *//HERE before each line to highlight new code.*
 
-Declaring an instance of our new activities after kuflowActivities declaration: 
+Declaring an instance of our new activities after kuflowActivities declaration:
 
 ```java
 private final KuFlowActivities kuflowActivities;
@@ -725,7 +729,7 @@ We can test all that we have done by running  the worker (like pressing F5 in Vi
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_1.png)
+![](/img/TUT03-08-Test_1.png)
 
 </div>
 
@@ -733,7 +737,7 @@ And initiating the process in KuFlow’s UI.
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_2.png)
+![](/img/TUT03-08-Test_2.png)
 
 </div>
 
@@ -741,7 +745,7 @@ And initiating the process in KuFlow’s UI.
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_3.png)
+![](/img/TUT03-08-Test_3.png)
 
 </div>
 
@@ -749,8 +753,8 @@ If there are seats available, the UI will show the Bus Billboard and the form to
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_4.png)
-![](/img/tutorial/serverless/TUT03-08-Test_5.png)
+![](/img/TUT03-08-Test_4.png)
+![](/img/TUT03-08-Test_5.png)
 
 </div>
 
@@ -758,7 +762,7 @@ If not, will show the “No Seats Available” notification:
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_3.png)
+![](/img/TUT03-08-Test_3.png)
 
 </div>
 
@@ -766,7 +770,7 @@ You get something like this:
 
 <div class="text--center">
 
-![](/img/tutorial/serverless/TUT03-08-Test_3.png)
+![](/img/TUT03-08-Test_3.png)
 
 </div>
 
