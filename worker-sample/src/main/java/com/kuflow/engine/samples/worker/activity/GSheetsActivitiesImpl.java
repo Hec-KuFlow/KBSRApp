@@ -47,6 +47,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
     public static final String SPREAD_SHEET_ID = "1N4TzejQ4pjEdb2IJbvah8pnoHx1TWYKn_jP6h42-jHE";
+    public static final String SHEET_NAME = "BUS!";
 
     /**
      * Creates an authorized Credential object.
@@ -86,7 +87,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
         NetHttpTransport HTTP_TRANSPORT;
         try {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-            final String range = "BUS!A1:D2";
+            final String range = SHEET_NAME + "A1:D2";
             Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -131,7 +132,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
     public List<String> writeSheet(String firstName, String lastName, String email) {
         try {
             final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-            String range = "BUS!A5:C5";
+            String range = SHEET_NAME + "A5:C5";
             Sheets service = new Sheets.Builder(httpTransport, JSON_FACTORY, getCredentials(httpTransport))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -166,7 +167,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
 
     @Override
     public String getCellValue() {
-        String range = "BUS!D2";
+        String range = SHEET_NAME + "D2";
 
         String cellValue = "";
         try {
@@ -195,7 +196,7 @@ public class GSheetsActivitiesImpl implements GSheetsActivities {
 
     @Override
     public String getSeatNo() {
-        String range = "BUS!B5:B116";
+        String range = SHEET_NAME + "B5:B116";
 
         // Declare a variable for the seat number
         String seatNo = "";
