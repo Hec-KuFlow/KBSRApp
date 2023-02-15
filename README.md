@@ -749,20 +749,32 @@ And initiating the process in KuFlow’s UI.
 
 </div>
 
-If there are seats available, the UI will show the Bus Billboard and the form to complete with the booking information.
+If there are seats available:
 
 <div class="text--center">
 
 ![](/img/TUT03-08-Test_4.png)
 
+</div>
+
+the UI will show the Bus Billboard and the form to complete with the booking information.
+
+<div class="text--center">
+
 ![](/img/TUT03-08-Test_5.png)
 ![](/img/TUT03-08-Test_6.png)
 ![](/img/TUT03-08-Test_7.png)
+
+</div>
+
+And we see that the data is entered in the spreadsheet
+<div class="text--center">
+
 ![](/img/TUT03-08-Test_8.png)
 
 </div>
 
-If not, will show the “No Seats Available” notification:
+If not, because Seats Available = 0, will show the “No Seats Available” notification:
 
 <div class="text--center">
 
