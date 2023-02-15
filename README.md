@@ -43,7 +43,7 @@ Finally, you get something like:
 
 <div class="center">
 
-![](/img/tutorial/TUT03-01-App.png)
+![](/img/TUT03-01-App.png)
 
 </div>
 
