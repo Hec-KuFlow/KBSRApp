@@ -238,59 +238,66 @@ The appropriate values can be obtained from the KuFlow application. Check out th
 # ===================================================================
 
 kuflow:
- api:
+  api:
 
-   # ID of the APPLICATION configured in KUFLOW.
-   # Get it in "Application details" in the Kuflow APP.
-   application-id: FILL_ME
+    # ID of the APPLICATION configured in KUFLOW.
+    # Get it in "Application details" in the Kuflow APP.
+    application-id: FILL_ME
 
-   # TOKEN of the APPLICATION configured in KUFLOW.
-   # Get it in "Application details" in the Kuflow APP.
-   token: FILL_ME
+    # TOKEN of the APPLICATION configured in KUFLOW.
+    # Get it in "Application details" in the Kuflow APP.
+    token: FILL_ME
 
 application:
- temporal:
+  temporal:
+    # Temporal Namespace. Get it in "Application details" in the KUFLOW APP.
+    namespace: FILL_ME
 
-   # Temporal Namespace. Get it in "Application details" in the KUFLOW APP.
-   namespace: FILL_ME
+    # Temporal Queue. Configure it in the "Process definition" in the KUFLOW APP.
+    kuflow-queue: FILL_ME
 
-   # Temporal Queue. Configure it in the "Process definition" in the KUFLOW APP.
-   kuflow-queue: FILL_ME
+    mutual-tls:
 
-   mutual-tls:
-	# Client certificate
-	# Get it in "Application details" in the KUFLOW APP.
-	cert-data: |
-	  -----BEGIN CERTIFICATE-----
-	  fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	  fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	  …
-	  fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	  fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	  -----END CERTIFICATE-----
+      # Client certificate
+      # Get it in "Application details" in the KUFLOW APP.
+      cert-data: |
+        -----BEGIN CERTIFICATE-----
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        ...
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        -----END CERTIFICATE-----
 
-	# Private key
-	# Get it in "Application details" in the KUFLOW APP.
-	# IMPORTANT: This example works with PKCS8, so ensure PKCS8 is selected
-	     #            when you generate the certificates in the KUFLOW App
-		key-data: |
-	       -----BEGIN CERTIFICATE-----
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       …
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       -----END CERTIFICATE-----
-	
-	# KUFLOW Certification Authority (CA) of the certificates issued in KUFLOW
-	ca-data: |
-	       -----BEGIN CERTIFICATE-----
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       …
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
-	       -----END CERTIFICATE-----
+
+      # Private key
+      # Get it in "Application details" in the KUFLOW APP.
+      # IMPORTANT: This example works with PKCS8, so ensure PKCS8 is selected
+      #            when you generate the certificates in the KUFLOW App
+      key-data: |
+        -----BEGIN PRIVATE KEY-----
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        ...
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        -----END PRIVATE KEY-----
+
+      # KUFLOW Certification Authority (CA) of the certificates issued in KUFLOW
+      ca-data: |
+        -----BEGIN CERTIFICATE-----
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        ...
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_fill_me_
+        -----END CERTIFICATE-----
 ```
 
 Please note that this is a YAML, respect the indentation.
