@@ -1,4 +1,4 @@
-# 3rd Party API (Google GSheets) Use Tutorial - Temporal.io based Worker
+# KuFlow - Third-Party API (Google GSheets) example
 
 # What we will create?
 
